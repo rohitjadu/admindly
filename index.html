@@ -178,24 +178,34 @@
       flex-shrink: 0
     }
 
-    .brand-logo-img {
+    .brand-logo-full {
       height: 32px;
       width: auto;
       object-fit: contain;
       filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.25));
-      transition: transform .25s ease, filter .25s ease
+      transition: transform .25s ease, filter .25s ease;
+      display: block;
     }
 
-    #nav.compact .brand-logo-img {
+    .brand-logo-icon {
       height: 28px;
       width: 28px;
       object-fit: contain;
-      display: block;
-      margin: auto;
-      content: url("logo_icon.png");
+      display: none;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.25));
     }
 
-    .brand:hover .brand-logo-img {
+    #nav.compact .brand-logo-full {
+      display: none !important;
+    }
+
+    #nav.compact .brand-logo-icon {
+      display: block !important;
+      margin: auto !important;
+    }
+
+    .brand:hover .brand-logo-full,
+    .brand:hover .brand-logo-icon {
       transform: scale(1.04);
       filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.45));
     }
@@ -1089,11 +1099,14 @@
         width: calc(100vw - 28px) !important;
         height: 52px !important;
         top: 14px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
         padding: 0 16px !important;
         border-radius: 30px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
+        box-sizing: border-box !important;
       }
 
       #nav.compact {
@@ -1103,17 +1116,35 @@
         padding: 0 !important;
         justify-content: center !important;
         align-items: center !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
       }
 
-      .brand-logo-img {
+      .brand {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100% !important;
+      }
+
+      .brand-logo-full {
         height: 22px !important;
         width: auto !important;
         display: block !important;
       }
 
-      #nav.compact .brand-logo-img {
+      .brand-logo-icon {
         height: 26px !important;
         width: 26px !important;
+      }
+
+      #nav.compact .brand-logo-full {
+        display: none !important;
+      }
+
+      #nav.compact .brand-logo-icon {
+        display: block !important;
+        margin: auto !important;
       }
 
       .links {
@@ -2093,7 +2124,8 @@
 
   <nav class="glass" id="nav" role="navigation" aria-label="Main navigation">
     <a class="brand" href="#" aria-label="AdMindly home">
-      <img src="logo_transparent.png" alt="AdMindly Logo" class="brand-logo-img">
+      <img src="logo_transparent.png" alt="AdMindly Logo" class="brand-logo-full">
+      <img src="logo_icon.png" alt="AdMindly Emblem" class="brand-logo-icon">
     </a>
     <div class="links" role="list">
       <a href="#agents" role="listitem">Platform</a>
