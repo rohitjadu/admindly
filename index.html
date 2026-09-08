@@ -1076,7 +1076,19 @@
     @media(max-width:800px) {
       #nav {
         width: calc(100vw - 28px) !important;
-        top: 14px !important
+        top: 14px !important;
+        padding: 0 16px !important;
+        justify-content: space-between !important;
+      }
+
+      #nav.compact {
+        width: 52px !important;
+        padding: 0 !important;
+        justify-content: center !important;
+      }
+
+      .brand-logo-img {
+        height: 22px !important;
       }
 
       .links {
@@ -1084,8 +1096,10 @@
       }
 
       .demo {
-        font-size: 11px;
-        padding: 10px 14px !important
+        font-size: 11px !important;
+        padding: 8px 14px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
       }
 
       .hero {
