@@ -134,10 +134,13 @@
     }
 
     #nav.compact {
-      width: 56px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
       padding: 0;
       justify-content: center;
-      overflow: hidden
+      align-items: center;
+      overflow: hidden;
     }
 
     #nav.compact .links,
@@ -159,7 +162,12 @@
     }
 
     #nav.compact .brand {
-      gap: 0
+      gap: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
     }
 
     .brand {
@@ -181,6 +189,9 @@
     #nav.compact .brand-logo-img {
       height: 28px;
       width: 28px;
+      object-fit: contain;
+      display: block;
+      margin: auto;
       content: url("logo_icon.png");
     }
 
@@ -1076,19 +1087,33 @@
     @media(max-width:800px) {
       #nav {
         width: calc(100vw - 28px) !important;
+        height: 52px !important;
         top: 14px !important;
         padding: 0 16px !important;
+        border-radius: 30px !important;
+        display: flex !important;
+        align-items: center !important;
         justify-content: space-between !important;
       }
 
       #nav.compact {
         width: 52px !important;
+        height: 52px !important;
+        border-radius: 50% !important;
         padding: 0 !important;
         justify-content: center !important;
+        align-items: center !important;
       }
 
       .brand-logo-img {
         height: 22px !important;
+        width: auto !important;
+        display: block !important;
+      }
+
+      #nav.compact .brand-logo-img {
+        height: 26px !important;
+        width: 26px !important;
       }
 
       .links {
