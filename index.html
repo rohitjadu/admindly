@@ -18,6 +18,27 @@
   <meta name="twitter:image" content="logo.jpeg">
   <link rel="icon" type="image/png" href="logo_icon.png">
   <link rel="apple-touch-icon" href="logo_icon.png">
+  <link rel="canonical" href="https://comfy-kashata-78590c.netlify.app/">
+
+  <!-- JSON-LD STRUCTURED DATA SCHEMA FOR SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AdMindly",
+    "url": "https://comfy-kashata-78590c.netlify.app/",
+    "logo": "https://comfy-kashata-78590c.netlify.app/logo.jpeg",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "99.00",
+      "priceCurrency": "USD"
+    },
+    "description": "Agentic Marketing Intelligence System that investigates campaigns, competitors and creators in parallel."
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -2778,9 +2799,21 @@
         canvas.onpointerdown = e => { drag = true; px = e.clientX; py = e.clientY };
         canvas.onpointerup = () => drag = false;
         canvas.onpointermove = e => { if (!drag) return; ty += (e.clientX - px) * .005; tx += (e.clientY - py) * .005; px = e.clientX; py = e.clientY };
-        function resize() { ren.setSize(stage.clientWidth, stage.clientHeight, false); cam.aspect = stage.clientWidth / stage.clientHeight; cam.updateProjectionMatrix() }
-        resize(); addEventListener('resize', resize);
-        function loop(ms) { requestAnimationFrame(loop); if (!drag) ty += .00045; g.rotation.x += (tx - g.rotation.x) * .04; g.rotation.y += (ty - g.rotation.y) * .04; arcs.forEach(a => a.pulse.position.copy(a.curve.getPoint((ms * .00008 + a.o) % 1))); ren.render(scene, cam) }
+        let isGlobeVisible = true;
+        const globeObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => { isGlobeVisible = entry.isIntersecting; });
+        });
+        if (stage) globeObserver.observe(stage);
+
+        function loop(ms) { 
+          requestAnimationFrame(loop); 
+          if (!isGlobeVisible) return;
+          if (!drag) ty += .00045; 
+          g.rotation.x += (tx - g.rotation.x) * .04; 
+          g.rotation.y += (ty - g.rotation.y) * .04; 
+          arcs.forEach(a => a.pulse.position.copy(a.curve.getPoint((ms * .00008 + a.o) % 1))); 
+          ren.render(scene, cam); 
+        }
         loop(0);
       }
       go();
